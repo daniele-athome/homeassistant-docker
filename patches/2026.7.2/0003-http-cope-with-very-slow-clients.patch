@@ -1,0 +1,25 @@
+From d181da73a658c6990627ac7e9a369b2ba3715ee9 Mon Sep 17 00:00:00 2001
+From: Daniele Ricci <daniele@casaricci.it>
+Date: Sun, 9 Feb 2025 17:32:07 +0100
+Subject: [PATCH 3/4] http: cope with very slow clients
+
+---
+ homeassistant/components/websocket_api/http.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/homeassistant/components/websocket_api/http.py b/homeassistant/components/websocket_api/http.py
+index 9cfca0685c0..271d7871bbb 100644
+--- a/homeassistant/components/websocket_api/http.py
++++ b/homeassistant/components/websocket_api/http.py
+@@ -39,7 +39,7 @@ if TYPE_CHECKING:
+     from .connection import ActiveConnection
+ 
+ CLOSE_MSG_TYPES = {WSMsgType.CLOSE, WSMsgType.CLOSED, WSMsgType.CLOSING}
+-AUTH_MESSAGE_TIMEOUT = 10  # seconds
++AUTH_MESSAGE_TIMEOUT = 30  # seconds
+ 
+ 
+ _WS_LOGGER: Final = logging.getLogger(f"{__name__}.connection")
+-- 
+2.53.0
+
