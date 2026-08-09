@@ -4,4 +4,7 @@
 pip3 install "pymysql>=1.0,<2.0"
 
 # A few utilities
-apk add --no-cache libcap-setcap lm-sensors
+apk add --no-cache \
+  libcap-setcap \
+  lm-sensors \
+  openssh-client
