@@ -1,8 +1,8 @@
 #!/usr/bin/with-contenv bashio
 
-# Create our user (not stricly needed, but I like it)
+# Create our user (needed for ssh keys)
 # FIXME check for existing user instead of voiding the error
-adduser -DH -u "$PUID" -g "$PGID" homeassistant homeassistant || true
+adduser -D -u "$PUID" -g "$PGID" homeassistant homeassistant || true
 
 # Give permission to install packages
 chown -R "$PUID:$PGID" /usr/local/bin /usr/local/lib/python*
