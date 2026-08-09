@@ -4,6 +4,19 @@ ARG HOMEASSISTANT_VERSION
 
 COPY rootfs /
 
+RUN apk add --no-cache \
+      libcap-setcap \
+      lm-sensors \
+      iputils \
+      openssh-client
+
+RUN uv pip install "pymysql>=1.0,<2.0"
+
+# For nmap privileged operations
+RUN setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip /usr/bin/nmap
+# For HA privileged network operations
+RUN setcap cap_net_raw,cap_net_admin+eip "$(readlink -f /usr/local/bin/python3)"
+
 RUN --mount=type=bind,source=patches/${HOMEASSISTANT_VERSION},target=/patches \
     set -eu; \
     apk add --no-cache patch; \
