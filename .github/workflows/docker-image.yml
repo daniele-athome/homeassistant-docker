@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: home-assistant
+  IMAGE_NAME: daniele-athome/home-assistant
 
 jobs:
 
