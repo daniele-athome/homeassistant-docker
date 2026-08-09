@@ -1,14 +1,14 @@
-From accd374176b854799ce6d211fe463436807befaf Mon Sep 17 00:00:00 2001
+From c3b2aebd10afd584f7b1c2cf9b800d2bd9d1a9f9 Mon Sep 17 00:00:00 2001
 From: Daniele Ricci <daniele@casaricci.it>
 Date: Sun, 15 Oct 2023 20:26:51 +0200
-Subject: [PATCH 1/4] pipeline: strip XML tags from SSML speech text
+Subject: [PATCH 1/5] pipeline: strip XML tags from SSML speech text
 
 ---
  homeassistant/components/assist_pipeline/pipeline.py | 11 +++++++++++
  1 file changed, 11 insertions(+)
 
 diff --git a/homeassistant/components/assist_pipeline/pipeline.py b/homeassistant/components/assist_pipeline/pipeline.py
-index 258d29fceeb..1fe023e66b1 100644
+index a54bec88a86..323aa99a2ce 100644
 --- a/homeassistant/components/assist_pipeline/pipeline.py
 +++ b/homeassistant/components/assist_pipeline/pipeline.py
 @@ -1333,6 +1333,17 @@ class PipelineRun:

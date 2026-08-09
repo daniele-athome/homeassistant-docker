@@ -1,7 +1,7 @@
-From d181da73a658c6990627ac7e9a369b2ba3715ee9 Mon Sep 17 00:00:00 2001
+From 0794fe1286052592891c4ff43784fecdac88101c Mon Sep 17 00:00:00 2001
 From: Daniele Ricci <daniele@casaricci.it>
 Date: Sun, 9 Feb 2025 17:32:07 +0100
-Subject: [PATCH 3/4] http: cope with very slow clients
+Subject: [PATCH 3/5] http: cope with very slow clients
 
 ---
  homeassistant/components/websocket_api/http.py | 2 +-

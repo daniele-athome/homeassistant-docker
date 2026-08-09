@@ -1,7 +1,7 @@
-From a26a5d02cff8412cf01eee083778675c090f15d7 Mon Sep 17 00:00:00 2001
+From eb85bf968dec6ef3cfbc4924d30634eb45cf84eb Mon Sep 17 00:00:00 2001
 From: Daniele Ricci <daniele@casaricci.it>
 Date: Sun, 16 Feb 2025 13:44:19 +0100
-Subject: [PATCH 4/4] cast: workaround integration bug when player is off
+Subject: [PATCH 4/5] cast: workaround integration bug when player is off
 
 https://github.com/home-assistant/core/issues/112644
 ---

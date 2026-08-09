@@ -1,7 +1,7 @@
-From 854daf5f2d8be5d5f116aae7f5ba5e0220ecda2e Mon Sep 17 00:00:00 2001
+From cee1fb8571f361984604f966aa1ba974b3facb9f Mon Sep 17 00:00:00 2001
 From: Daniele Ricci <daniele@casaricci.it>
 Date: Fri, 15 Jan 2021 21:06:38 +0100
-Subject: [PATCH 2/4] microsoft_tts: expose output configuration parameter
+Subject: [PATCH 2/5] microsoft_tts: expose output configuration parameter
 
 ---
  homeassistant/components/microsoft/tts.py | 6 ++++--
