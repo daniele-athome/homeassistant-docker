@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bashio
+
+# For nmap privileged operations
+setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip /usr/bin/nmap
+
+# For HA privileged network operations
+setcap cap_net_raw,cap_net_admin+eip "$(readlink -f /usr/local/bin/python3)"

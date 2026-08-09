@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bashio
+
+# For the recorder integration
+pip3 install "pymysql>=1.0,<2.0"
+
+# A few utilities
+apk add libcap-setcap lm-sensors
