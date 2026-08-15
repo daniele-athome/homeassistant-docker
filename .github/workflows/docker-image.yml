@@ -17,6 +17,7 @@ jobs:
       matrix:
         version:
           - stable
+          - 2026.8.2
           - 2026.8.1
           - 2026.8.0
 
