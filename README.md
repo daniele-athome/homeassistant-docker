@@ -18,3 +18,14 @@ Configuration is done via environment variables.
 
 The `dialout` group is required to allow Home Assistant access to some USB devices, such as the SkyConnect USB
 controller.
+
+## Release
+
+The image is built and published only when a git tag is pushed. The tag name must be the Home Assistant version to
+build (e.g. `2026.9.4`) and a matching `patches/<version>` directory (or symlink) must exist. The image is pushed with
+both the version tag and the `stable` tag, which always points to the latest pushed release.
+
+```shell
+git tag 2026.9.4
+git push origin 2026.9.4
+```

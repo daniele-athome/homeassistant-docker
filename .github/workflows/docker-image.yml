@@ -1,9 +1,8 @@
 name: Create and publish Docker image
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ "master" ]
+    tags: [ "*" ]
 
 env:
   REGISTRY: ghcr.io
@@ -13,19 +12,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        version:
-          - stable
-          - 2026.9.4
-          - 2026.9.3
-          - 2026.9.2
-          - 2026.9.1
-          - 2026.9.0
-          - 2026.8.3
-          - 2026.8.2
-          - 2026.8.1
-          - 2026.8.0
 
     permissions:
       contents: read
@@ -48,12 +34,13 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v6
         with:
-          #flavor: |
-          #  # Disable latest tag
-          #  latest=false
+          flavor: |
+            # Disable latest tag
+            latest=false
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ matrix.version }}
+            type=raw,value=${{ github.ref_name }}
+            type=raw,value=stable
       - name: Build and push
         uses: docker/build-push-action@v7
         with:
@@ -62,4 +49,4 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           build-args: |
-            HOMEASSISTANT_VERSION=${{ matrix.version }}
+            HOMEASSISTANT_VERSION=${{ github.ref_name }}
