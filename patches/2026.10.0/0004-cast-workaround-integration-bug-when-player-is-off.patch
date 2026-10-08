@@ -1,0 +1,35 @@
+From b7887b358fc88eee35144c62a6eb8c98a0272ee2 Mon Sep 17 00:00:00 2001
+From: Daniele Ricci <daniele@casaricci.it>
+Date: Sun, 16 Feb 2025 13:44:19 +0100
+Subject: [PATCH 4/5] cast: workaround integration bug when player is off
+
+https://github.com/home-assistant/core/issues/112644
+---
+ homeassistant/components/cast/media_player.py | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/homeassistant/components/cast/media_player.py b/homeassistant/components/cast/media_player.py
+index 952198cc812..beca1523a3f 100644
+--- a/homeassistant/components/cast/media_player.py
++++ b/homeassistant/components/cast/media_player.py
+@@ -596,6 +596,8 @@ class CastMediaPlayerEntity(CastDevice, MediaPlayerEntity):
+     def media_pause(self) -> None:
+         """Send pause command."""
+         media_controller = self._media_controller()
++        if media_controller.status is None or media_controller.status.media_session_id is None:
++            return
+         media_controller.pause()
+ 
+     @api_error
+@@ -603,6 +605,8 @@ class CastMediaPlayerEntity(CastDevice, MediaPlayerEntity):
+     def media_stop(self) -> None:
+         """Send stop command."""
+         media_controller = self._media_controller()
++        if media_controller.status is None or media_controller.status.media_session_id is None:
++            return
+         media_controller.stop()
+ 
+     @api_error
+-- 
+2.53.0
+

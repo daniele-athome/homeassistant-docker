@@ -1,0 +1,49 @@
+From a6167558ea1d53ce02e56461dafe6a7574844873 Mon Sep 17 00:00:00 2001
+From: Daniele Ricci <daniele@casaricci.it>
+Date: Fri, 15 Jan 2021 21:06:38 +0100
+Subject: [PATCH 2/5] microsoft_tts: expose output configuration parameter
+
+---
+ homeassistant/components/microsoft/tts.py | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/homeassistant/components/microsoft/tts.py b/homeassistant/components/microsoft/tts.py
+index 54edc49361a..3c6fdb16150 100644
+--- a/homeassistant/components/microsoft/tts.py
++++ b/homeassistant/components/microsoft/tts.py
+@@ -45,6 +45,7 @@ PLATFORM_SCHEMA = TTS_PLATFORM_SCHEMA.extend(
+         ),
+         probatio.Optional(CONF_GENDER, default=DEFAULT_GENDER): probatio.In(GENDERS),
+         probatio.Optional(CONF_TYPE, default=DEFAULT_TYPE): cv.string,
++        probatio.Optional(CONF_OUTPUT, default=DEFAULT_OUTPUT): cv.string,
+         probatio.Optional(CONF_RATE, default=DEFAULT_RATE): probatio.All(
+             probatio.Coerce(int), probatio.Range(-100, 100)
+         ),
+@@ -65,6 +66,7 @@ def get_engine(hass, config, discovery_info=None):
+         config[CONF_LANG],
+         config[CONF_GENDER],
+         config[CONF_TYPE],
++        config[CONF_OUTPUT],
+         config[CONF_RATE],
+         config[CONF_VOLUME],
+         config[CONF_PITCH],
+@@ -77,14 +79,14 @@ class MicrosoftProvider(Provider):
+     """The Microsoft speech API provider."""
+ 
+     def __init__(
+-        self, apikey, lang, gender, ttype, rate, volume, pitch, contour, region
++        self, apikey, lang, gender, ttype, output, rate, volume, pitch, contour, region
+     ):
+         """Init Microsoft TTS service."""
+         self._apikey = apikey
+         self._lang = lang
+         self._gender = gender
+         self._type = ttype
+-        self._output = DEFAULT_OUTPUT
++        self._output = output
+         self._rate = f"{rate}{PERCENTAGE}"
+         self._volume = f"{volume}{PERCENTAGE}"
+         self._pitch = pitch
+-- 
+2.53.0
+
